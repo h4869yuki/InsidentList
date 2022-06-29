@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <title>IncidentList</title>
+</head>
+<body>
+<article>
+  <div class="side">
+    <!-- サイドバー -->
+    <h2>MENU</h2>
+    <a  href="{{ url_for('top') }}">TOP</a><br>
+    <a  href="{{ url_for('alert') }}">障害件数</a><br>
+    <a  href="{{ url_for('work') }}">作業件数</a><br>
+    <a  href="{{ url_for('maintanance') }}">借用件数</a>
+    <form>
+      <input type="button" value="このページを印刷する" onclick="window.print();">
+    </form>
+  </div>
+  
+      <div class="content">
+  <!-- <p>メインコンテンツ</p> -->  
+    <h1>INFRASTRUCTURE</h1>
+    <img src="{{ png }}" alt=""></img>
+    <table width = 850px align="center" border="1">
+      <caption>{{ thisyear }}年度</caption>
+      <thead>
+        <tr>
+          <th>04月</th>
+          <th>05月</th>
+          <th>06月</th>
+          <th>07月</th>
+          <th>08月</th>
+          <th>09月</th>
+          <th>10月</th>
+          <th>11月</th>
+          <th>12月</th>
+          <th>01月</th>
+          <th>02月</th>
+          <th>03月</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ anualamount[3] }}</td>
+          <td>{{ anualamount[4] }}</td>
+          <td>{{ anualamount[5] }}</td>
+          <td>{{ anualamount[6] }}</td>
+          <td>{{ anualamount[7] }}</td>
+          <td>{{ anualamount[8] }}</td>
+          <td>{{ anualamount[9] }}</td>
+          <td>{{ anualamount[10] }}</td>
+          <td>{{ anualamount[11] }}</td>
+          <td>{{ anualamount[0] }}</td>
+          <td>{{ anualamount[1] }}</td>
+          <td>{{ anualamount[2] }}</td>
+        </tr>
+      </tbody>  
+    </table>
+
+    <table width = 850px align="center" border="1">
+      <thead>
+        <tr>
+          <th >管理番号</th>
+          <th >サービス</th>
+          <th >拠点</th>
+          <th >事象</th>
+          <th >原因</th>
+          <th >開始日時</th>
+          <th >終了日時</th>
+          <th >ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in tbl_data %}
+        <tr>
+          <td>{{ r.number }}</td>
+          <td>{{ r.service }}</td>
+          <td>{{ r.site }}</td>
+          <td>{{ r.phenomenon }}</td>
+          <td>{{ r.cause }}</td>
+          <td>{{ r.start }}</td>
+          <td>{{ r.finish }}</td>
+          <td>{{ r.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</article>
+
+
+</body>
+</html>
+
